@@ -1,7 +1,7 @@
 'use strict';
-import * from 'babel/register'({});
-import server from './server/server';
+require('babel/register')({});
 
+var server = require('./server/server');
 
 const PORT = process.env.PORT || 3000;
 
