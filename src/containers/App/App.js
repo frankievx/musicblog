@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { MainBar } from 'components';
+
 // import { connect } from 'react-redux';
 // import { IndexLink } from 'react-router';
 // import { LinkContainer } from 'react-router-bootstrap';
@@ -31,15 +33,28 @@ import React, { Component } from 'react';
 // @connect(state => ({user: state.auth.user}), {logout, pushState: push})
 
 export default class App extends Component {
+  static propTypes = {
+    children: PropTypes.node
+  };
+  static defaultProps() {
+    return {
+      children: null // or [] I guess
+    };
+  }
+
+  constructor(props) {
+    super(props);
+  }
 
 
   render() {
     const styles = require('./App.scss');
 
     return (
-      <div className={styles.topbar}>
-        <p className={styles.title}> TrillVox </p>
-      </div>
+        <div id="app" styles={styles.app}>
+          <MainBar />
+          {this.props.children}
+        </div>
     );
   }
 }

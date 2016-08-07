@@ -1,0 +1,25 @@
+
+.videoWrapper {
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  height:100%;
+  width: 100%;
+}
+
+.videoWrapper iframe {
+  margin: 0 auto;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+.player {
+	width: 45%;
+	height: 60%;
+	position: relative;
+	background: #F0EBEB;
+	margin: 0 auto;
+  /*border-bottom: 1px solid rgb(0, 0, 0);*/
+}
