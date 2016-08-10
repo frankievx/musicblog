@@ -1,40 +1,31 @@
 import React, { Component, PropTypes } from 'react';
-import { MainBar } from 'components';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { MainBar, LeftSidebar } from 'components';
+import * as ArticleActions from '../../redux/actions/article_actions';
+import * as LeftSidebarActions from '../../redux/actions/leftsidebar_actions';
 
-// import { connect } from 'react-redux';
-// import { IndexLink } from 'react-router';
-// import { LinkContainer } from 'react-router-bootstrap';
-// import Navbar from 'react-bootstrap/lib/Navbar';
-// import Nav from 'react-bootstrap/lib/Nav';
-// import NavItem from 'react-bootstrap/lib/NavItem';
-// import Helmet from 'react-helmet';
-// import { isLoaded as isInfoLoaded, load as loadInfo } from 'redux/modules/info';
-// import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
-// import { InfoBar } from 'components';
-// import { push } from 'react-router-redux';
-// import config from '../../config';
-// import { asyncConnect } from 'redux-async-connect';
+function mapStateToProps(state) {
+  return {
+    articles: state.articles,
+    leftsidebar: state.leftsidebar
+  };
+}
 
-// @asyncConnect([{
-//   promise: ({store: {dispatch, getState}}) => {
-//     const promises = [];
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(Object.assign({}, ArticleActions, LeftSidebarActions), dispatch);
+}
 
-//     if (!isInfoLoaded(getState())) {
-//       promises.push(dispatch(loadInfo()));
-//     }
-//     if (!isAuthLoaded(getState())) {
-//       promises.push(dispatch(loadAuth()));
-//     }
-
-//     return Promise.all(promises);
-//   }
-// }])
-
-// @connect(state => ({user: state.auth.user}), {logout, pushState: push})
-
+@connect(mapStateToProps, mapDispatchToProps)
 export default class App extends Component {
   static propTypes = {
-    children: PropTypes.node
+    children: PropTypes.node,
+    fetchArticles: PropTypes.func.isRequired,
+    showLeftSidebar: PropTypes.func.isRequired,
+    hideLeftSidebar: PropTypes.func.isRequired,
+    articles: PropTypes.object.isRequired,
+    leftsidebar: PropTypes.object.isRequired
   };
   static defaultProps() {
     return {
@@ -46,15 +37,25 @@ export default class App extends Component {
     super(props);
   }
 
+  componentWillMount() {
+    this.props.fetchArticles();
+  }
 
   render() {
     const styles = require('./App.scss');
+    const { showLeftSidebar, hideLeftSidebar } = this.props;
+    const { display } = this.props.leftsidebar;
 
     return (
-        <div id="app" styles={styles.app}>
-          <MainBar />
-          {this.props.children}
-        </div>
+        <MuiThemeProvider>
+          <div id="app" styles={styles.app}>
+            <MainBar />
+            <LeftSidebar display={display}
+                         show={showLeftSidebar}
+                         hide={hideLeftSidebar}/>
+            {this.props.children}
+          </div>
+        </MuiThemeProvider>
     );
   }
 }

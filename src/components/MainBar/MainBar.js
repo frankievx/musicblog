@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Toggle } from 'material-ui';
 
 
@@ -17,9 +17,7 @@ export default class MainBar extends Component {
       		<Select classNames={selectStyles.Select}/>
       		<div id="autoplay" className={styles.autoplay}>
       			<p>Autoplay</p>
-      			<MuiThemeProvider>
       			<Toggle />
-      			</MuiThemeProvider>
     			</div>
         </div>
     );

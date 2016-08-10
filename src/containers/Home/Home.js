@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import styles from './Home.scss';
 import Article from '../../components/Article/Article';
 import * as ArticleActions from '../../redux/actions/article_actions';
+// import * as LeftSidebarActions from '../../redux/actions/leftsidebar_actions';
 
 function mapStateToProps(state) {
   return {
@@ -20,16 +21,11 @@ function mapDispatchToProps(dispatch) {
 export default class Home extends Component {
 
 	static propTypes = {
-		fetchArticles: PropTypes.func.isRequired,
 		articles: PropTypes.object.isRequired
 	};
 
 	constructor(props) {
 		super(props);
-	}
-
-	componentWillMount() {
-		this.props.fetchArticles();
 	}
 
 
