@@ -7,9 +7,18 @@ var MongoClient = require('mongodb').MongoClient;
 
 var app = express();
 
+var defaultCorsHeaders = {
+"access-control-allow-origin": "*",
+"access-control-allow-methods": "GET, POST, PUT, DELETE, OPTIONS",
+"access-control-allow-headers": "content-type, accept",
+"access-control-max-age": 10
+};
+var plainTextHeader = Object.assign({'content-type': 'text/plain'}, defaultCorsHeaders);
+var jsonHeader = Object.assign({'content-type': 'text/json'}, defaultCorsHeaders);
 var port = 3030;
 var ip = '127.0.0.1';
 var db;
+
 
 
 MongoClient.connect("mongodb://localhost:27017/trillvox", function(err, database) {
@@ -45,6 +54,7 @@ app.get('/articles', function(req, res) {
 	db.collection('articles').find().toArray().then(function(data) {
 		// console.log(data);
 		// exports.articles = data;
+		res.set(jsonHeader);
 		res.status(200).json(data);
 	});
 })

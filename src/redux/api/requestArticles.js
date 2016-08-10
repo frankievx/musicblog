@@ -1,13 +1,9 @@
-// import axios from 'axios';
-import { FETCH_ARTICLES, INVALIDATE_ARTICLES, RECIEVE_ARTICLES} from '../actions/article_actions';
+import axios from 'axios';
 
 
-// const port = 3030;
-// const url = 'http://localhost:';
+const port = 3030;
+const url = 'http://localhost:' + port;
 
 export default function requestArticles() {
-  return {
-    types: [FETCH_ARTICLES, INVALIDATE_ARTICLES, RECIEVE_ARTICLES],
-    promise: (client) => client.get('/serveArticles')
-  };
+	return axios.get(url + '/articles');
 }
