@@ -8,7 +8,7 @@ export function* fetchArticlesSaga() {
   try {
     const results = yield call(requestArticles);
     console.log('api results', results);
-    yield put({ type: RECIEVE_ARTICLES, payload: results });
+    yield put({ type: RECIEVE_ARTICLES, payload: results.data });
   } catch (err) {
     console.log('fetching articles failed', err);
     yield put({type: INVALIDATE_ARTICLES});

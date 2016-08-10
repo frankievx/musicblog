@@ -6,10 +6,11 @@
  * MIT License: https://github.com/JedWatson/react-select
 */
 .Select {
-  /*position: relative;*/
+  position: relative;
   order: 2;
   flex-basis: 20%;
   align-self: center;
+  z-index:2;
 }
 .Select,
 .Select div,

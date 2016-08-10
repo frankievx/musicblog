@@ -9,7 +9,7 @@ export default class MainBar extends Component {
 
   render() {
     const styles = require('./MainBar.scss');
-    const selectStyles = require('./react-select.scss');
+    const selectStyles = require('./react-select.css');
 
     return (
         <div id="mainbar" className={styles.mainbar}>
