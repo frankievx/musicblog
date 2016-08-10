@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
-// import styles from './LeftSidebar.scss';
+import styles from './LeftSidebar.scss';
+import rightArrow from './Right_Arrow.png';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 
@@ -11,7 +12,7 @@ export default class LeftSidebar extends Component {
   };
 
   render() {
-    const { display } = this.props;
+    const { display, show, hide} = this.props;
     const sidebarStyles = {
       position: 'fixed',
       top: '7%',
@@ -21,7 +22,8 @@ export default class LeftSidebar extends Component {
     };
 
     return (
-        <div id="leftsidebar">
+        <div id="leftsidebar" className={styles.leftsidebar} onMouseEnter={show} onMouseLeave={hide}>
+          <img src={rightArrow} className={styles.rightarrow}/>
           <Drawer open={display}
                   containerStyle={sidebarStyles}>
             <MenuItem>Menu Item</MenuItem>
