@@ -1,13 +1,14 @@
 require('../server.babel');
 var http = require('http');
-var requestHandler = require('./request-handler');
+var express = require('express');
+var requests = require('./requests.js');
 var bodyParser = require('body-parser');
-var db = require('mongodb').Db;
 var MongoClient = require('mongodb').MongoClient;
+
+var app = express();
 
 var port = 3030;
 var ip = '127.0.0.1';
-var server = http.createServer(requestHandler.app);
 var db;
 
 
@@ -16,13 +17,13 @@ MongoClient.connect("mongodb://localhost:27017/trillvox", function(err, database
 		console.log('we are connected');
 		db = database;
 
-		db.collection('articles').find().toArray().then(function(data) {
-			// console.log(data);
-			exports.articles = data;
-		});
+		// db.collection('articles').find().toArray().then(function(data) {
+		// 	// console.log(data);
+		// 	exports.articles = data;
+		// });
 
 		
-		server.listen(port, function(err) {
+		app.listen(port, function(err) {
 			if(err) {
 				console.log('server listening err', err);
 			}
@@ -36,3 +37,14 @@ MongoClient.connect("mongodb://localhost:27017/trillvox", function(err, database
 	}
 })
 
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
+app.get('/articles', function(req, res) {
+	db.collection('articles').find().toArray().then(function(data) {
+		// console.log(data);
+		// exports.articles = data;
+		res.status(200).json(data);
+	});
+})
