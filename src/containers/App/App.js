@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import CircularProgress from 'material-ui/CircularProgress';
 import { MainBar, LeftSidebar, RightSidebar } from 'components';
 import * as ArticleActions from '../../redux/actions/article_actions';
 import * as LeftSidebarActions from '../../redux/actions/leftsidebar_actions';
@@ -49,8 +50,13 @@ export default class App extends Component {
   render() {
     const styles = require('./App.scss');
     const { showLeftSidebar, hideLeftSidebar, showRightSidebar, hideRightSidebar } = this.props;
+    const articles = this.props.articles.items;
     const leftDisplay = this.props.leftsidebar.display;
     const rightDisplay = this.props.rightsidebar.display;
+
+    if ( articles === [] ) {
+      return (<CircularProgress />);
+    }
 
     return (
         <MuiThemeProvider>
@@ -58,7 +64,8 @@ export default class App extends Component {
             <MainBar />
             <LeftSidebar display={leftDisplay}
                          show={showLeftSidebar}
-                         hide={hideLeftSidebar}/>
+                         hide={hideLeftSidebar}
+                         articles={articles}/>
             <RightSidebar display={rightDisplay}
                           show={showRightSidebar}
                           hide={hideRightSidebar}/>

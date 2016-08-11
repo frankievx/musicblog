@@ -1,0 +1,14 @@
+.listitem {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+
+}
+
+.listimg {
+	flex-grow: 1;
+}
+
+.listbody {
+	flex-grow: 2;
+}
