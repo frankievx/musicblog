@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import styles from './LeftSidebar.scss';
-import rightArrow from './Right_Arrow.png';
+import rightArrowIcon from './Right_Arrow.png';
+import listIcon from './ic_view_list_white_48dp_2x.png';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 
@@ -23,7 +24,8 @@ export default class LeftSidebar extends Component {
 
     return (
         <div id="leftsidebar" className={styles.leftsidebar} onMouseEnter={show} onMouseLeave={hide}>
-          <img src={rightArrow} className={styles.rightarrow}/>
+          <img src={rightArrowIcon} className={styles.rightarrow}/>
+          <img src={listIcon} className={styles.listicon}/>
           <Drawer open={display}
                   containerStyle={sidebarStyles}>
             <MenuItem>Menu Item</MenuItem>

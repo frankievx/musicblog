@@ -2,19 +2,21 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { MainBar, LeftSidebar } from 'components';
+import { MainBar, LeftSidebar, RightSidebar } from 'components';
 import * as ArticleActions from '../../redux/actions/article_actions';
 import * as LeftSidebarActions from '../../redux/actions/leftsidebar_actions';
+import * as RightSidebarActions from '../../redux/actions/rightsidebar_actions';
 
 function mapStateToProps(state) {
   return {
     articles: state.articles,
-    leftsidebar: state.leftsidebar
+    leftsidebar: state.leftsidebar,
+    rightsidebar: state.rightsidebar
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(Object.assign({}, ArticleActions, LeftSidebarActions), dispatch);
+  return bindActionCreators(Object.assign({}, ArticleActions, LeftSidebarActions, RightSidebarActions), dispatch);
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -24,8 +26,11 @@ export default class App extends Component {
     fetchArticles: PropTypes.func.isRequired,
     showLeftSidebar: PropTypes.func.isRequired,
     hideLeftSidebar: PropTypes.func.isRequired,
+    showRightSidebar: PropTypes.func.isRequired,
+    hideRightSidebar: PropTypes.func.isRequired,
     articles: PropTypes.object.isRequired,
-    leftsidebar: PropTypes.object.isRequired
+    leftsidebar: PropTypes.object.isRequired,
+    rightsidebar: PropTypes.object.isRequired
   };
   static defaultProps() {
     return {
@@ -43,16 +48,20 @@ export default class App extends Component {
 
   render() {
     const styles = require('./App.scss');
-    const { showLeftSidebar, hideLeftSidebar } = this.props;
-    const { display } = this.props.leftsidebar;
+    const { showLeftSidebar, hideLeftSidebar, showRightSidebar, hideRightSidebar } = this.props;
+    const leftDisplay = this.props.leftsidebar.display;
+    const rightDisplay = this.props.rightsidebar.display;
 
     return (
         <MuiThemeProvider>
           <div id="app" styles={styles.app}>
             <MainBar />
-            <LeftSidebar display={display}
+            <LeftSidebar display={leftDisplay}
                          show={showLeftSidebar}
                          hide={hideLeftSidebar}/>
+            <RightSidebar display={rightDisplay}
+                          show={showRightSidebar}
+                          hide={hideRightSidebar}/>
             {this.props.children}
           </div>
         </MuiThemeProvider>

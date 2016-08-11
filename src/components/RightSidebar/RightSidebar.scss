@@ -1,0 +1,20 @@
+.rightsidebar {
+	position:fixed;
+	display: flex;
+	right: 0px;
+	align-items: center;
+	top: 7%;
+	height: 93%;
+  width: 256px;
+	z-index: 5;
+}
+
+.leftarrow {
+	position: absolute;
+	margin-left: 160px;
+}
+
+.menuicon {
+	position: absolute;
+	margin-left: 50px;
+}
