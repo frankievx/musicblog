@@ -21,7 +21,7 @@ var db;
 
 
 
-MongoClient.connect("mongodb://localhost:27017/trillvox", function(err, database) {
+MongoClient.connect("mongodb://localhost:27017/musicblog", function(err, database) {
 	if(!err) {
 		console.log('we are connected');
 		db = database;
