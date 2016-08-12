@@ -6,7 +6,7 @@ import Player from './Player';
 import ArticleBody from './ArticleBody';
 import { lazyload } from 'react-lazyload';
 
-@lazyload({height: '100%', offset: 400 })
+@lazyload({ height: '100%', once: true, offset: 400 })
 export default class Article extends Component {
 	static propTypes = {
 		article: PropTypes.object.isRequired
