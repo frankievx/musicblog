@@ -4,7 +4,9 @@ import Paper from 'material-ui/Paper';
 import ArticleHeader from './ArticleHeader';
 import Player from './Player';
 import ArticleBody from './ArticleBody';
+import { lazyload } from 'react-lazyload';
 
+@lazyload({height: '100%', offset: 400 })
 export default class Article extends Component {
 	static propTypes = {
 		article: PropTypes.object.isRequired

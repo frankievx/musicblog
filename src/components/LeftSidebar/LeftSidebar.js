@@ -43,7 +43,7 @@ export default class LeftSidebar extends Component {
     const { drawer } = this.state;
 
     return (
-      <div id="leftsidebar" className={styles.leftsidebar} onMouseEnter={showDrawer} onMouseLeave={hideDrawer}>
+      <div id="leftsidebar" className={styles.leftsidebar} onMouseEnter={showDrawer.bind(this)} onMouseLeave={hideDrawer.bind(this)}>
         <img src={rightArrowIcon} className={styles.rightarrow}/>
         <img src={listIcon} className={styles.listicon}/>
         <Drawer open={drawer}

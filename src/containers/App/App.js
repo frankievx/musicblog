@@ -23,7 +23,7 @@ export default class App extends Component {
   static propTypes = {
     children: PropTypes.node,
     articles: PropTypes.object.isRequired,
-    fetchArticles: PropTypes.function.isRequired,
+    fetchArticles: PropTypes.func.isRequired,
     muiTheme: PropTypes.object.isRequired
   };
   static defaultProps = {
@@ -37,7 +37,7 @@ export default class App extends Component {
         height: 50,
       }
     })
-  }
+  };
 
   constructor(props) {
     super(props);
