@@ -11,6 +11,8 @@ import ApiClient from './helpers/ApiClient';
 import Html from './helpers/Html';
 import PrettyError from 'pretty-error';
 import http from 'http';
+// import { Db } from 'mongodb';
+// import { MongoClient } from 'mongodb';
 
 import { match } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
@@ -27,6 +29,7 @@ const proxy = httpProxy.createProxyServer({
   target: targetUrl,
   ws: true
 });
+
 
 app.use(compression());
 // app.use(favicon(path.join(__dirname, '..', 'static', 'favicon.ico')));

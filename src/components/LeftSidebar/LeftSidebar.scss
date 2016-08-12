@@ -1,0 +1,18 @@
+.leftsidebar {
+	position:fixed;
+	display: flex;
+	align-items: center;
+	top: 7%;
+	height: 93%;
+  width: 300px;
+	z-index: 5;
+}
+
+.rightarrow {
+	margin-left: 50px;
+}
+
+.listicon {
+	position: absolute;
+	margin-left: 110px;
+}

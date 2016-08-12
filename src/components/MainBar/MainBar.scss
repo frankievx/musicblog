@@ -1,0 +1,22 @@
+
+
+.mainbar {
+  position:fixed;
+  box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.50);
+  height: 7%;
+  width: 100%;
+  z-index:4;
+}
+
+.title {
+  align-self: center;
+  font-family: BradleyHandITCTT-Bold;
+  font-size: 36px;
+  color: #5D2261;
+  letter-spacing: 0px;
+  /*padding-left: 5%;*/
+}
+
+.autoplay {
+  order: 3;
+}

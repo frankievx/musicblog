@@ -1,45 +1,68 @@
-import React, { Component } from 'react';
-// import { connect } from 'react-redux';
-// import { IndexLink } from 'react-router';
-// import { LinkContainer } from 'react-router-bootstrap';
-// import Navbar from 'react-bootstrap/lib/Navbar';
-// import Nav from 'react-bootstrap/lib/Nav';
-// import NavItem from 'react-bootstrap/lib/NavItem';
-// import Helmet from 'react-helmet';
-// import { isLoaded as isInfoLoaded, load as loadInfo } from 'redux/modules/info';
-// import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
-// import { InfoBar } from 'components';
-// import { push } from 'react-router-redux';
-// import config from '../../config';
-// import { asyncConnect } from 'redux-async-connect';
+import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import styles from './App.scss';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import CircularProgress from 'material-ui/CircularProgress';
+import { MainBar, LeftSidebar, RightSidebar } from 'components';
+import * as ArticleActions from '../../redux/actions/article_actions';
 
-// @asyncConnect([{
-//   promise: ({store: {dispatch, getState}}) => {
-//     const promises = [];
+function mapStateToProps(state) {
+  return {
+    articles: state.articles
+  };
+}
 
-//     if (!isInfoLoaded(getState())) {
-//       promises.push(dispatch(loadInfo()));
-//     }
-//     if (!isAuthLoaded(getState())) {
-//       promises.push(dispatch(loadAuth()));
-//     }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(ArticleActions, dispatch);
+}
 
-//     return Promise.all(promises);
-//   }
-// }])
-
-// @connect(state => ({user: state.auth.user}), {logout, pushState: push})
-
+@connect(mapStateToProps, mapDispatchToProps)
 export default class App extends Component {
+  static propTypes = {
+    children: PropTypes.node,
+    articles: PropTypes.object.isRequired,
+    fetchArticles: PropTypes.function.isRequired,
+    muiTheme: PropTypes.object.isRequired
+  };
+  static defaultProps = {
+    children: null,
+    muiTheme: getMuiTheme({
+      palette: {
+        textColor: '#08415C',
+        alternateTextColor: '#388697'
+      },
+      appBar: {
+        height: 50,
+      }
+    })
+  }
 
+  constructor(props) {
+    super(props);
+  }
+
+  componentWillMount() {
+    this.props.fetchArticles();
+  }
 
   render() {
-    const styles = require('./App.scss');
+    const { muiTheme } = this.props;
+    const articles = this.props.articles.items;
+    if ( articles === [] ) {
+      return (<CircularProgress />);
+    }
 
     return (
-      <div className={styles.topbar}>
-        <p className={styles.title}> TrillVox </p>
-      </div>
+        <MuiThemeProvider muiTheme={muiTheme}>
+          <div id="app" styles={styles.app}>
+            <MainBar />
+            <LeftSidebar articles={articles}/>
+            <RightSidebar />
+            {this.props.children}
+          </div>
+        </MuiThemeProvider>
     );
   }
 }
