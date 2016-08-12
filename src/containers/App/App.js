@@ -5,7 +5,7 @@ import styles from './App.scss';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import CircularProgress from 'material-ui/CircularProgress';
-import { MainBar, LeftSidebar, RightSidebar } from 'components';
+import { MainBar, LeftSidebar, RightSidebar } from '../../components';
 import * as ArticleActions from '../../redux/actions/article_actions';
 
 function mapStateToProps(state) {
