@@ -9,26 +9,45 @@ import ListArticle from './ListArticle';
 
 export default class LeftSidebar extends Component {
   static propTypes = {
-    display: PropTypes.bool,
-    show: PropTypes.func.isRequired,
-    hide: PropTypes.func.isRequired,
-    articles: PropTypes.array.isRequired
+    articles: PropTypes.array.isRequired,
+    drawerStyles: PropTypes.object.isRequired
   };
 
-  render() {
-    const { display, show, hide, articles } = this.props;
-    const sidebarStyles = {
+  static defaultProps = {
+    drawerStyles: {
       position: 'fixed',
       top: '7%',
       height: '93%'
-    };
+    }
+  };
+
+  constructor(props) {
+    super(props);
+  }
+
+  state = {
+    drawer: false
+  };
+
+  showDrawer() {
+    this.setState({ drawer: true });
+  }
+  hideDrawer() {
+    this.setState({ drawer: false });
+  }
+
+
+  render() {
+    const { showDrawer, hideDrawer } = this;
+    const { drawerStyles, articles } = this.props;
+    const { drawer } = this.state;
 
     return (
-      <div id="leftsidebar" className={styles.leftsidebar} onMouseEnter={show} onMouseLeave={hide}>
+      <div id="leftsidebar" className={styles.leftsidebar} onMouseEnter={showDrawer} onMouseLeave={hideDrawer}>
         <img src={rightArrowIcon} className={styles.rightarrow}/>
         <img src={listIcon} className={styles.listicon}/>
-        <Drawer open={display}
-                containerStyle={sidebarStyles}
+        <Drawer open={drawer}
+                containerStyle={drawerStyles}
                 width={350}>
           <List>
             <Subheader> Articles </Subheader>
