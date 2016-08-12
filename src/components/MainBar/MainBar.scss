@@ -2,11 +2,6 @@
 
 .mainbar {
   position:fixed;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  /*align-content: center;*/
-  background: #F5EDED;
   box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.50);
   height: 7%;
   width: 100%;
@@ -14,7 +9,7 @@
 }
 
 .title {
-  order: 1;
+  align-self: center;
   font-family: BradleyHandITCTT-Bold;
   font-size: 36px;
   color: #5D2261;

@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import styles from './App.scss';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import CircularProgress from 'material-ui/CircularProgress';
 import { MainBar, LeftSidebar, RightSidebar } from 'components';
 import * as ArticleActions from '../../redux/actions/article_actions';
@@ -48,18 +50,25 @@ export default class App extends Component {
   }
 
   render() {
-    const styles = require('./App.scss');
     const { showLeftSidebar, hideLeftSidebar, showRightSidebar, hideRightSidebar } = this.props;
     const articles = this.props.articles.items;
     const leftDisplay = this.props.leftsidebar.display;
     const rightDisplay = this.props.rightsidebar.display;
-
+    const muiTheme = getMuiTheme({
+      palette: {
+        textColor: '#08415C',
+        alternateTextColor: '#388697'
+      },
+      appBar: {
+        height: 50,
+      },
+    });
     if ( articles === [] ) {
       return (<CircularProgress />);
     }
 
     return (
-        <MuiThemeProvider>
+        <MuiThemeProvider muiTheme={muiTheme}>
           <div id="app" styles={styles.app}>
             <MainBar />
             <LeftSidebar display={leftDisplay}
