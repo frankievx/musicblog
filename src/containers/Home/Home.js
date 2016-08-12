@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import classname from 'classname';
 // import { Link } from 'react-router';
 import styles from './Home.scss';
 import Article from '../../components/Article/Article';
@@ -32,8 +33,8 @@ export default class Home extends Component {
   render() {
   	const { articles } = this.props;
     return (
-  		<div id="home" className={styles.home}>
- 				{articles.items.map(item => <Article article={item}/>)}
+  		<div id="home" className={classname(styles.home, 'articlelist')}>
+ 				{articles.items.map((item, index) => <Article article={item} index={index} name={styles.home}/>)}
 			</div>
 		);
   }

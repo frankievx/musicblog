@@ -51,7 +51,7 @@ export default class LeftSidebar extends Component {
                 width={350}>
           <List>
             <Subheader> Articles </Subheader>
-            {articles.map(item => <ListArticle article={item}/>)}
+            {articles.map((item, index) => <ListArticle article={item} index={index}/>)}
           </List>
         </Drawer>
       </div>
