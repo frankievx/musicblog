@@ -10,8 +10,8 @@ import Popover from 'material-ui/Popover/Popover';
 
 export default class RightSidebar extends Component {
   static propTypes = {
-    anchorOrigin: PropTypes.bool,
-    targetOrigin: PropTypes.bool
+    anchorOrigin: PropTypes.object,
+    targetOrigin: PropTypes.object
   };
 
   static defaultProps = {
