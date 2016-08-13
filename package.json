@@ -28,7 +28,7 @@
   },
   "betterScripts": {
     "start-prod": {
-      "command": "forever ./bin/server.js",
+      "command": "forever start ./bin/server.js",
       "env": {
         "NODE_PATH": "./src",
         "NODE_ENV": "production",
@@ -37,7 +37,7 @@
       }
     },
     "start-prod-api": {
-      "command": "forever ./bin/api.js",
+      "command": "forever start ./bin/api.js",
       "env": {
         "NODE_PATH": "./api",
         "NODE_ENV": "production",
