@@ -3,7 +3,7 @@ import styles from './MainBar.scss';
 // import Select from 'react-select';
 // import { Toggle } from 'material-ui';
 // import AppBar from 'material-ui/AppBar';
-import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
+import {Toolbar, ToolbarGroup, ToolbarTitle, ToolbarSeparator} from 'material-ui/Toolbar';
 // import IconMenu from 'material-ui/IconMenu';
 // import IconButton from 'material-ui/IconButton';
 // import FontIcon from 'material-ui/FontIcon';
@@ -16,15 +16,20 @@ export default class MainBar extends Component {
 
 
   render() {
-    // const selectStyles = require('./react-select.css');
-
     return (
       <Toolbar className={styles.mainbar}>
         <ToolbarGroup>
           <ToolbarTitle className={styles.title} text="TrillVox" />
         </ToolbarGroup>
+        <ToolbarSeparator />
+        <ToolbarGroup>
+          <ToolbarTitle text="Song Title" />
+          <ToolbarSeparator/>
+          <ToolbarTitle text="Artist"/>
+        </ToolbarGroup>
+        <ToolbarSeparator/>
+        <ToolbarGroup text="Social Media" />
       </Toolbar>
-
     );
   }
 }
