@@ -10,7 +10,8 @@ import * as ArticleActions from '../../redux/actions/article_actions';
 
 function mapStateToProps(state) {
   return {
-    articles: state.articles
+    articlelist: state.articlelist,
+    currentArticle: state.currentArticle
   };
 }
 
@@ -22,9 +23,10 @@ function mapDispatchToProps(dispatch) {
 export default class App extends Component {
   static propTypes = {
     children: PropTypes.node,
-    articles: PropTypes.object.isRequired,
-    fetchArticles: PropTypes.func.isRequired,
-    muiTheme: PropTypes.object.isRequired
+    muiTheme: PropTypes.object.isRequired,
+    articlelist: PropTypes.object.isRequired,
+    currentArticle: PropTypes.object.isRequired,
+    fetchArticles: PropTypes.func.isRequired
   };
   static defaultProps = {
     children: null,
@@ -49,16 +51,22 @@ export default class App extends Component {
 
   render() {
     const { muiTheme } = this.props;
-    const articles = this.props.articles.items;
-    if ( articles === [] ) {
-      return (<CircularProgress />);
+    const { list, isFetching } = this.props.articlelist;
+    const { title, artist } = this.props.currentArticle;
+    if ( isFetching ) {
+      return (
+        <MuiThemeProvider muiTheme={muiTheme}>
+          <CircularProgress />
+        </MuiThemeProvider>
+      );
     }
 
     return (
         <MuiThemeProvider muiTheme={muiTheme}>
           <div id="app" styles={styles.app}>
-            <MainBar />
-            <LeftSidebar articles={articles}/>
+            <MainBar title={title}
+                     artist={artist}/>
+            <LeftSidebar articles={list}/>
             <RightSidebar />
             {this.props.children}
           </div>

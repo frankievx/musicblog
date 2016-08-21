@@ -39,8 +39,8 @@ export default class LeftSidebar extends Component {
 
   render() {
     const { showDrawer, hideDrawer } = this;
-    const { drawerStyles, articles } = this.props;
     const { drawer } = this.state;
+    const { drawerStyles, articles } = this.props;
 
     return (
       <div id="leftsidebar" className={styles.leftsidebar} onMouseEnter={showDrawer.bind(this)} onMouseLeave={hideDrawer.bind(this)}>

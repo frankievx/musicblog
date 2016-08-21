@@ -2,13 +2,13 @@ import React, { PropTypes, Component } from 'react';
 import classname from 'classname';
 import styles from './Article.scss';
 // import Paper from 'material-ui/Paper';
-import ArticleHeader from './ArticleHeader';
+// import ArticleHeader from './ArticleHeader';
 import Player from './Player';
 import ArticleBody from './ArticleBody';
 // import ArticlePlaceholder from './ArticlePlaceholder';
-import { lazyload } from 'react-lazyload';
+// import { lazyload } from 'react-lazyload';
 
-@lazyload({ height: '100%', once: true, offset: 400})
+// @lazyload({ height: '100%', once: true, offset: 400})
 export default class Article extends Component {
 	static propTypes = {
 		article: PropTypes.object.isRequired,
@@ -16,7 +16,7 @@ export default class Article extends Component {
 	};
 
   render() {
-  	const { title, artist, text, source, backgroundsrc } = this.props.article;
+  	const { text, source, backgroundsrc } = this.props.article;
   	const backgroundStyle = {
   		backgroundImage: 'url(' + backgroundsrc + ')'
   	};
@@ -31,8 +31,6 @@ export default class Article extends Component {
     return (
     	<div className={classname(styles.article, 'article')}>
 				<div className={styles.background} style={backgroundStyle}></div>
-				<ArticleHeader title={title}
-											 artist={artist}/>
 				<Player source={source}/>
 				<ArticleBody text={text}/>
 			</div>

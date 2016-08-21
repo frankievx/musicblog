@@ -1,12 +1,20 @@
-import { FETCH_ARTICLES, INVALIDATE_ARTICLES, RECIEVE_ARTICLES} from '../actions/article_actions';
+import { FETCH_ARTICLES, INVALIDATE_ARTICLES,
+         RECIEVE_ARTICLES, SET_ARTICLE,
+         ADD_ARTICLES} from '../actions/article_actions';
 
-const initialState = {
+const listState = {
   isFetching: false,
   didInvalidate: false,
-  items: []
+  list: [],
+  articles: []
 };
 
-export default function articles(state = initialState, action) {
+const articleState = {
+  title: '',
+  artist: ''
+};
+
+function articlelist(state = listState, action) {
   switch (action.type) {
     case FETCH_ARTICLES:
       return Object.assign({}, state, {
@@ -20,12 +28,34 @@ export default function articles(state = initialState, action) {
       });
     case RECIEVE_ARTICLES:
     	return Object.assign({}, state, {
-        items: action.payload,
+        list: action.payload,
         isFetching: false,
         didInvalidate: false
         // lastUpdated: action.receivedAt
+      });
+    case ADD_ARTICLES:
+      return Object.assign({}, state, {
+        articles: [ ...state.articles,
+                    ...state.list.slice(action.payload, action.payload + 3) ]
       });
     default:
       return state;
   }
 }
+
+function currentArticle(state = articleState, action) {
+  switch (action.type) {
+    case SET_ARTICLE:
+      return Object.assign({}, state, {
+        currentArticle: action.payload
+      });
+      default:
+        return state;
+  }
+}
+
+
+export default {
+  articlelist: articlelist,
+  currentArticle: currentArticle
+};

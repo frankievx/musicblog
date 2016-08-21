@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PropTypes, Component } from 'react';
 import styles from './MainBar.scss';
 // import Select from 'react-select';
 // import { Toggle } from 'material-ui';
@@ -13,9 +13,17 @@ import {Toolbar, ToolbarGroup, ToolbarTitle, ToolbarSeparator} from 'material-ui
 
 
 export default class MainBar extends Component {
+  static propTypes = {
+    title: PropTypes.string.isRequired,
+    artist: PropTypes.string.isRequired
+  };
 
+  constructor(props) {
+    super(props);
+  }
 
   render() {
+    const { title, artist } = this.props;
     return (
       <Toolbar className={styles.mainbar}>
         <ToolbarGroup>
@@ -23,9 +31,9 @@ export default class MainBar extends Component {
         </ToolbarGroup>
         <ToolbarSeparator />
         <ToolbarGroup>
-          <ToolbarTitle text="Song Title" />
+          <ToolbarTitle text={title} />
           <ToolbarSeparator/>
-          <ToolbarTitle text="Artist"/>
+          <ToolbarTitle text={artist}/>
         </ToolbarGroup>
         <ToolbarSeparator/>
         <ToolbarGroup text="Social Media" />

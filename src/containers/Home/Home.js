@@ -10,7 +10,7 @@ import * as ArticleActions from '../../redux/actions/article_actions';
 
 function mapStateToProps(state) {
   return {
-    articles: state.articles
+    articles: state.articlelist.articles
   };
 }
 
@@ -22,7 +22,7 @@ function mapDispatchToProps(dispatch) {
 export default class Home extends Component {
 
 	static propTypes = {
-		articles: PropTypes.object.isRequired
+		articles: PropTypes.array.isRequired
 	};
 
 	constructor(props) {
@@ -34,7 +34,7 @@ export default class Home extends Component {
   	const { articles } = this.props;
     return (
   		<div id="home" className={classname(styles.home, 'articlelist')}>
- 				{articles.items.map((item, index) => <Article article={item} index={index} name={styles.home}/>)}
+ 				{articles.map((item, index) => <Article article={item} index={index} name={styles.home}/>)}
 			</div>
 		);
   }
