@@ -41,15 +41,3 @@ export default class MainBar extends Component {
     );
   }
 }
-
-
-        /*
-        <div id="mainbar" className={styles.mainbar}>
-          <div className={styles.title}> TrillVox </div>
-          <Select classNames={selectStyles.Select}/>
-          <div id="autoplay" className={styles.autoplay}>
-            <p>Autoplay</p>
-            <Toggle />
-          </div>
-        </div>
-        */

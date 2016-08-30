@@ -5,6 +5,8 @@ import styles from './Article.scss';
 // import ArticleHeader from './ArticleHeader';
 import Player from './Player';
 import ArticleBody from './ArticleBody';
+// import Scroll, { } from 'react-scroll';
+
 // import ArticlePlaceholder from './ArticlePlaceholder';
 // import { lazyload } from 'react-lazyload';
 
@@ -12,10 +14,12 @@ import ArticleBody from './ArticleBody';
 export default class Article extends Component {
 	static propTypes = {
 		article: PropTypes.object.isRequired,
-		index: PropTypes.number.isRequired
+		index: PropTypes.number.isRequired,
+		addArticles: PropTypes.func.isRequired
 	};
 
   render() {
+  	// const { index } = this.props;
   	const { text, source, backgroundsrc } = this.props.article;
   	const backgroundStyle = {
   		backgroundImage: 'url(' + backgroundsrc + ')'

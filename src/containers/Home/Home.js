@@ -22,7 +22,8 @@ function mapDispatchToProps(dispatch) {
 export default class Home extends Component {
 
 	static propTypes = {
-		articles: PropTypes.array.isRequired
+		articles: PropTypes.array.isRequired,
+    addArticles: PropTypes.func.isRequired
 	};
 
 	constructor(props) {
@@ -31,10 +32,18 @@ export default class Home extends Component {
 
 
   render() {
-  	const { articles } = this.props;
+  	const { articles, addArticles } = this.props;
     return (
   		<div id="home" className={classname(styles.home, 'articlelist')}>
- 				{articles.map((item, index) => <Article article={item} index={index} name={styles.home}/>)}
+ 				{articles.map((item, index) => {
+          return (
+            <Article
+              article={item}
+              index={index}
+              name={styles.home}
+              addArticles={addArticles}/>
+          );
+        })}
 			</div>
 		);
   }

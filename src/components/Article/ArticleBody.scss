@@ -1,8 +1,10 @@
 .articlebody {
 	position: relative;
 	background-color: #F0EBEB;
-	width: 45%;
+	width: 45vw;
+	height: 70vh;
 	margin: 0 auto;
+	overflow-y: scroll;
 	z-index: 2;
 }
 
