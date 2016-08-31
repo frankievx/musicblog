@@ -36,7 +36,7 @@ function articlelist(state = listState, action) {
     case ADD_ARTICLES:
       return Object.assign({}, state, {
         articles: [ ...state.articles,
-                    ...state.list.slice(action.payload, action.payload + 3) ]
+                    ...state.list.slice() ]
       });
     default:
       return state;
