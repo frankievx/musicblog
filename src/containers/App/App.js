@@ -31,6 +31,7 @@ export default class App extends Component {
   static defaultProps = {
     children: null,
     muiTheme: getMuiTheme({
+      userAgent: false,
       palette: {
         textColor: '#08415C',
         alternateTextColor: '#388697'
@@ -47,6 +48,28 @@ export default class App extends Component {
 
   componentWillMount() {
     this.props.fetchArticles();
+  }
+
+  componentDidMount() {
+    const ScrollMagic = require('scrollmagic');
+    const controller = new ScrollMagic.Controller({
+      globalSceneOptions: {
+        triggerHook: 'onLeave'
+      }
+    });
+
+    // get all slides
+    const slides = document.querySelectorAll('article');
+
+    // create scene for every slide
+    for (let i = 0; i < slides.length; i++) {
+      new ScrollMagic.Scene({
+          triggerElement: slides[i]
+        })
+        .setPin(slides[i])
+        .addIndicators() // add indicators (requires plugin)
+        .addTo(controller);
+    }
   }
 
   render() {

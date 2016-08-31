@@ -49,6 +49,7 @@ export default class Html extends Component {
         </head>
         <body>
           <div id="content" dangerouslySetInnerHTML={{__html: content}}/>
+          <script type="text/javascript" src="scrollmagic/uncompressed/plugins/debug.addIndicators.js"></script>
           <script dangerouslySetInnerHTML={{__html: `window.__data=${serialize(store.getState())};`}} charSet="UTF-8"/>
           <script src={assets.javascript.main} charSet="UTF-8"/>
         </body>

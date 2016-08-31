@@ -15,6 +15,7 @@
     "import/no-named-as-default": 2,
     "comma-dangle": 0,  // not sure why airbnb turned this on. gross!
     "indent": 0,
+    "id-length": 0,
     "new-cap": 0,
     "no-console": 0,
     "no-alert": 0

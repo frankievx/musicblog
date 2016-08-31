@@ -30,6 +30,29 @@ export default class Home extends Component {
 		super(props);
 	}
 
+  componentDidMount() {
+    const ScrollMagic = require('scrollmagic');
+    const controller = new ScrollMagic.Controller({
+      loglevel: 3,
+      globalSceneOptions: {
+        triggerHook: 'onLeave'
+      }
+    });
+
+    // get all slides
+    const slides = document.querySelectorAll('article');
+
+    // create scene for every slide
+    for (let i = 0; i < slides.length; i++) {
+      new ScrollMagic.Scene({
+          loglevel: 3,
+          triggerElement: slides[i]
+        })
+        .setPin(slides[i])
+        .addIndicators() // add indicators (requires plugin)
+        .addTo(controller);
+    }
+  }
 
   render() {
   	const { articles, addArticles } = this.props;

@@ -18,6 +18,7 @@ export default class Article extends Component {
 		addArticles: PropTypes.func.isRequired
 	};
 
+
   render() {
   	// const { index } = this.props;
   	const { text, source, backgroundsrc } = this.props.article;
