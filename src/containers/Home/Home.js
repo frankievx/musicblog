@@ -33,7 +33,7 @@ export default class Home extends Component {
   componentDidMount() {
     const ScrollMagic = require('scrollmagic');
     const controller = new ScrollMagic.Controller({
-      loglevel: 3,
+      // loglevel: 3,
       globalSceneOptions: {
         triggerHook: 'onLeave'
       }
@@ -45,7 +45,7 @@ export default class Home extends Component {
     // create scene for every slide
     for (let i = 0; i < slides.length; i++) {
       new ScrollMagic.Scene({
-          loglevel: 3,
+          // loglevel: 3,
           triggerElement: slides[i]
         })
         .setPin(slides[i])

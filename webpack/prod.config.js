@@ -70,6 +70,7 @@ module.exports = {
 
     // ignore dev config
     new webpack.IgnorePlugin(/\.\/dev/, /\/config$/),
+    new webpack.NoErrorsPlugin(),
 
     // optimizations
     new webpack.optimize.DedupePlugin(),
